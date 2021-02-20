@@ -1,0 +1,1 @@
+rows,columns = 36, 122
