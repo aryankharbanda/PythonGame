@@ -97,9 +97,12 @@ class Board:
                         x += 1
 
                     elif self._grid[y][x] == 'E':
-                        print('\U0001F923', end='')
+                        print('\U0001F642', end='')
                         x += 2
                     elif self._grid[y][x] == 'C':
+                        print('\U0001F643', end='')
+                        x += 2
+                    elif self._grid[y][x] == 'T':
                         print('\U0001F923', end='')
                         x += 2
 
@@ -107,6 +110,5 @@ class Board:
                 print('|\n', end='')
             
         if(gb.gameover == 1):
-            # print("GAME OVER, SCORE = " + str(gb.score)", TIME = ''")
             print("\033[2;1H" + colorama.Fore.WHITE + colorama.Back.RED + colorama.Style.BRIGHT + ("GAME OVER !!! SCORE: "+str(gb.score)+" TIME: "+str(gb.overtime)) .center(config.columns+2))
             print(colorama.Style.RESET_ALL)

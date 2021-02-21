@@ -72,28 +72,40 @@ class Ball:
                             if(brick._level == '5'):
                                 # explosion
                                 gb.explosion(brick,gb.explodingarr)
-                                self._vely = -self._vely
+                                if(gb.thruflag==0):
+                                    self._vely = -self._vely
 
                             else:
-                                # gb.score += 1
-                                self._vely = -self._vely
-                                brick._hits += 1
-                                # maxhits
-                                if(brick._hits == brick._maxhits):
+                                if(gb.thruflag==0):
+                                    # gb.score += 1
+                                    self._vely = -self._vely
+                                    brick._hits += 1
+                                    # maxhits
+                                    if(brick._hits == brick._maxhits):
+                                        brick._vanish = 1
+                                        gb.score += 1
+
+                                        # powerups
+                                        if(random.randint(0,100)>50):
+                                            a = random.randint(1,3)
+                                            if a==1:
+                                                pow = powerup.Expand(brick._y,brick._x+3)
+                                                gb.poweruparr.append(pow)
+                                            if a==2:
+                                                pow = powerup.Contract(brick._y,brick._x+3)
+                                                gb.poweruparr.append(pow)
+                                            if a==3:
+                                                pow = powerup.Thru(brick._y,brick._x+3)
+                                                gb.poweruparr.append(pow)
+
+                                    if(brick._level == '2'):
+                                        brick._level = '1'
+                                    if(brick._level == '3'):
+                                        brick._level = '2'
+                                else:
                                     brick._vanish = 1
                                     gb.score += 1
-                                    # powerups
-                                    if(brick._power == 1):
-                                        pow = powerup.Expand(brick._y,brick._x+3)
-                                        gb.poweruparr.append(pow)
-                                    if(brick._power == 2):
-                                        pow = powerup.Contract(brick._y,brick._x+3)
-                                        gb.poweruparr.append(pow)
 
-                                if(brick._level == '2'):
-                                    brick._level = '1'
-                                if(brick._level == '3'):
-                                    brick._level = '2'
                             
     def checkcolpaddle(self, paddle):
         if(self._flag == 1):

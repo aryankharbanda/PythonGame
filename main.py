@@ -5,6 +5,7 @@ import gbvar as gb
 # import board
 import subprocess
 import time
+import sys
 
 if __name__ == "__main__":
 
@@ -57,6 +58,7 @@ if __name__ == "__main__":
         gb.board.renderGrid()
         
         time.sleep(.1)
+        print(gb.thruflag)
 
         
         

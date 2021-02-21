@@ -46,3 +46,15 @@ class Contract(Powerup):
     def deactivate(self,paddle):
         paddle.setlength(9)
         paddle._x -= 1
+
+class Thru(Powerup):
+    def __init__(self, y, x):
+        self._power = 'T'
+        super().__init__(y,x)
+
+    def activate(self,paddle):
+        gb.thruflag = 1
+
+    def deactivate(self,paddle):
+        gb.thruflag = 0
+        
